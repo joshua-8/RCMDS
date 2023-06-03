@@ -14,6 +14,7 @@ class Button {
   int keyboard;
   String label;
   long millisWhenPressed;
+  boolean overrideColor;
   Button(float _xPos, float _yPos, float _size, color _background, color _forground, String _gpButton, int _keyboard, boolean _momentary, boolean _val, String _label) {
     xPos=_xPos;
     yPos=_yPos;
@@ -30,6 +31,7 @@ class Button {
     wasPressed=false;
     millisWhenPressed=0;
     mouseID=mousescreen.registerZone(xPos, yPos, size, size);
+    overrideColor=false;
   }
   boolean run() {
     wasPressed=pressed;
@@ -51,11 +53,12 @@ class Button {
       millisWhenPressed=millis();
     }
     noStroke();
-    if (val) {
+    if (val||overrideColor) {
       fill(forground);
     } else {
       fill(background);
     }
+    overrideColor=false;
     rect(xPos, yPos, size, size);
     fill(255);
     textSize(size/4);
