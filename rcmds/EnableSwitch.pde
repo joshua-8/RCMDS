@@ -16,11 +16,12 @@ class EnableSwitch {
     sliderPos=1;
   }
   boolean run(boolean enabled) {
+    noStroke();
     float swipePos=mousescreen.readPos(pointerID, new PVector(1, 0)).x;
     swipePos=constrain(swipePos, -1, 1);
     if (enabled) {
       boolean pressed=mousescreen.readPressed(pointerID);
-      if (pressed&&!locked||keyboardCtrl.isPressed(ENTER)) {
+      if (pressed&&!locked||keyboardCtrl.isPressed(ENTER)||keyboardCtrl.isPressed(' ')) {
         enabled=false;
         locked=true;
       }
@@ -31,7 +32,7 @@ class EnableSwitch {
       rect(x, y, w, h);
       fill(255);
       textAlign(CENTER);
-      textSize(h*.45);
+      textSize(h*.25);
       text("Tap to DISABLE ", x, y+h*.2, w, h);
       textAlign(LEFT);
     } else { //disabled

@@ -8,10 +8,9 @@ void rcmdsSetup() {
   background(0);
   mousescreen=new Mousescreen();
   keyboardCtrl=new KeyboardCtrl();
-  setupWifiSettingsChanger(width/2, 0);
   udp = new UDP(this);
   udp.listen(true);
-  enableSwitch=new EnableSwitch(width*.15, height/15, width/4, height/9);
+  enableSwitch=new EnableSwitch(width*3/4, height*.025, width/2-4, height/25);
 }
 void endOfDraw() {
   mousePress=false;
