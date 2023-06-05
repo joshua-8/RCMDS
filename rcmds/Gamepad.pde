@@ -43,7 +43,11 @@ PVector gamepadVect(String xa, String ya, PVector v) {
 float gamepadVal(String a, float v) {
   if (gamepadAvail&&a!=null) {
     try {
-      return gpad.getSlider(a).getValue();
+      float tv=gpad.getSlider(a).getValue();
+      if (abs(tv)<0.0005) {
+        tv=0;
+      }
+      return tv;
     }
     catch(NullPointerException n) {
       gamepadAvail=false;
